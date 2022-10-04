@@ -1,0 +1,21 @@
+import Foundation
+
+struct Toy: Codable {
+    var name: String
+}
+
+struct Employee: Codable {
+    var id: Int
+    var name: String
+    var favoriteToy: Toy
+}
+
+let toy = Toy(name: "Teddy Bear")
+let employee = Employee(id: 8, name: "Josephine Hathaway", favoriteToy: toy)  //Employee contains a Toy property. It's a NESTED TYPE.
+
+//Codable
+let data = try JSONEncoder().encode(employee)
+let string = String(data: data, encoding: .utf8)!  // to visualize it.
+
+//Decodable
+let sameEmployee = try JSONDecoder().decode(Employee.self, from: data)
