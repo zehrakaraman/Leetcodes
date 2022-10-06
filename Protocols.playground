@@ -1,0 +1,65 @@
+// Swift is not a language that supports multiple inheritances. Single Inheritance.
+// Instead, it uses structs, enums, and protocols.
+
+import UIKit
+
+protocol Person {
+    var name: String { get }
+    var age: Int { get set }
+    
+    func walk()
+}
+
+protocol Employable {
+    var profession: String { get }
+    
+    func interview()
+}
+
+class Baby: Person {
+    let name: String
+    var age: Int
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    func walk() {
+        print("Dude!! What the hell is that.")
+    }
+}
+
+class Teenager: Person, Employable {
+    var name: String
+    var age: Int
+    var profession: String
+    
+    func walk() {
+        print("Bruh!! I am way past walking. I run.")
+    }
+    
+    func interview() {
+        print("Tell me about yourself.")
+    }
+    
+    init(name: String, age: Int, profession: String) {
+        self.name = name
+        self.age = age
+        self.profession = profession
+    }
+}
+
+//var baby = Baby(name: "Angela", age: 1)
+//var teen = Teenager(name: "Josephine", age: 22, profession: "iOS Developer")
+ 
+var combined = [Person]()
+var baby = Baby(name: "Angela", age: 1)
+combined.append(baby)
+var teen = Teenager(name: "Josephine", age: 22, profession: "iOS Developer")
+combined.append(teen)
+
+for person in combined {
+    print("The name of the person is \(person.name).")
+    person.walk()
+}
