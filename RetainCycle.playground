@@ -1,0 +1,27 @@
+// Strong, Weak, Unwned
+// ARC (Automatic Referans Counting) helps in managing the system's memory.
+
+import UIKit
+
+class User {
+    let firstName: String
+    let lastName: String
+    weak var spouse: User?
+    
+    init(firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+    }
+    
+    deinit {
+        print("\(firstName) has been removed from memory.")
+    }
+}
+
+var user: User? = User(firstName: "Josephine", lastName: "Hathaway")
+var otherUser: User? = User(firstName: "John", lastName: "Hathaway")
+
+user?.spouse = otherUser
+otherUser?.spouse = user
+
+user = nil
